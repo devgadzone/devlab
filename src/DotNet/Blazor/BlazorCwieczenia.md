@@ -24,14 +24,14 @@
 ## 1. Składnia Razor - Podstawy
 
 ### Zadania:
-- [ ] **Utwórz komponent `RazorSyntaxDemo.razor`**
-- [ ] **Implicit Razor expressions**
+- [X] **Utwórz komponent `RazorSyntaxDemo.razor`**
+- [X] **Implicit Razor expressions**
   - Wyświetl swoję imię: `@name`
   - Wyświetl liczbę: `@count`
-- [ ] **Explicit Razor expressions**
+- [X] **Explicit Razor expressions**
   - Wyświetl aktualną datę: `@(DateTime.Now)`
   - Wyświetl wynik obliczeń: `@((10 + 5) * 2)`
-- [ ] **Bloki kodu @{ }**
+- [X] **Bloki kodu @{ }**
   - Stwórz metodę `GetWelcomeMessage()` zwracającą string
   - Wywołaj metodę w HTML i wyświetl rezultat
 

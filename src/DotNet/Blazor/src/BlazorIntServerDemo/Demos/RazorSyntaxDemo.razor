@@ -1,0 +1,23 @@
+﻿@page "/RazorSyntaxDemo"
+
+<h3>RazorSyntaxDemo</h3>
+
+<p>Hello @_name</p>
+<p>Count: @_count</p>
+<p>Date: @(DateTime.Now)</p>
+<p>(10 + 5) * 2 = @((10 + 5) * 2)</p>
+
+@code {
+    private string _name = "Jan";
+    private int _count = 649;
+}
+
+@{
+    string GetWelcomeMessage(string name, int age)
+    {
+        return $"Hello {name}, at age {age}";
+    }
+
+    <p>@GetWelcomeMessage("Jan", 24)</p>
+    <p>@GetWelcomeMessage("Janina", 18)</p>
+}
