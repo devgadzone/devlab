@@ -9,6 +9,12 @@
   - `dotnet new blazor -int None -o src\BlazorIntNoneDemo -f net9.0 -lang C# -au None -n BlazorIntNoneDemo`
   - `dotnet sln add src\BlazorIntNoneDemo`
 
+### Interactivity: Server
+  - `dotnet new blazor -int Server -o src\BlazorIntServerDemo -n BlazorIntServerDemo -f net9.0 -lang C# -au None `
+  - `dotnet sln add src\BlazorIntServerDemo`
+
+---
+
 ## 1. Składnia Razor - Podstawy
 
 ### Zadania:
