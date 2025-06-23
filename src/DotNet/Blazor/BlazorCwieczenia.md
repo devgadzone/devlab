@@ -1,11 +1,13 @@
 # Blazor - Lista ćwiczeń do utrwalania wiedzy
 
 ## Przygotowanie projektu
-- [ ] Utwórz nowy projekt Blazor Server/WebAssembly
+- [X] Utwórz nowy projekt Blazor Server/WebAssembly
   - Nazwij projekt: `BlazorDemo`
   - Dodaj folder `Demos` w głównym katalogu projektu
-
----
+##  CLI
+### Interactivity: NONE
+  - `dotnet new blazor -int None -o src\BlazorIntNoneDemo -f net9.0 -lang C# -au None -n BlazorIntNoneDemo`
+  - `dotnet sln add src\BlazorIntNoneDemo`
 
 ## 1. Składnia Razor - Podstawy
 
