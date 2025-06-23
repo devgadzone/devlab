@@ -56,12 +56,12 @@
 ## 3. Parametry komponentów
 
 ### Zadania:
-- [ ] **Utwórz komponent `UserCard.razor`**
-- [ ] **Dodaj parametry z walidacją:**
+- [X] **Utwórz komponent `UserCard.razor`**
+- [X] **Dodaj parametry z walidacją:**
   - `Name` - wymagany parametr
   - `Age` - opcjonalny parametr
   - `Email` - z Query Parameter
-- [ ] **Użyj atrybutów:**
+- [X] **Użyj atrybutów:**
   - `[EditorRequired]` dla wymaganego parametru
   - `[SupplyParameterFromQuery]` dla email
 
