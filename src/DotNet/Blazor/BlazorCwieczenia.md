@@ -40,15 +40,15 @@
 ## 2. Routing i parametry
 
 ### Zadania:
-- [ ] **Utwórz komponent `RoutingDemo.razor`**
-- [ ] **Implementuj następujące ścieżki:**
+- [X] **Utwórz komponent `RoutingDemo.razor`**
+- [X] **Implementuj następujące ścieżki:**
   - `/routing-demo` - strona główna
   - `/routing-demo/{id:int}` - parametr liczbowy
   - `/routing-demo/user/{name}` - parametr tekstowy
   - `/routing-demo/videos/{categoryId:int}/{videoId:int}` - multiple parametry
-- [ ] **Dodaj obsługę Query Parameters**
+- [X] **Dodaj obsługę Query Parameters**
   - `?firstName=Jan&lastName=Kowalski`
-- [ ] **Utwórz osobny plik Code-Behind**
+- [X] **Utwórz osobny plik Code-Behind**
   - `RoutingDemo.razor.cs` z logiką routingu
 
 ---

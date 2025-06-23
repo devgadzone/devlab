@@ -27,12 +27,56 @@
         </div>
         
         <!-- Demos Folder -->
-        <div class="nav-item px-3">
+        <div class="nav-item">
             <NavLink class="nav-link" href="/RazorSyntaxDemo">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Razor Syntax Demo
+                Razor Syntax Demo
             </NavLink>
         </div>
-
+        
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/routing-demo">
+                Routing demo
+            </NavLink>
+        </div>
+        
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/routing-demo/1234">
+                Routing demo Id = 1234
+            </NavLink>
+        </div>
+        
+        <div class="nav-item ">
+            <NavLink class="nav-link" href="/routing-demo/user/jan">
+                Routing demo Name = Jan
+            </NavLink>
+        </div>
+        
+        <!-- 404 ERROR
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/routing-demo/videos/23">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Routing demo categorid
+            </NavLink>
+        </div>
+        -->
+        
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/routing-demo/videos/23/234">
+                Routing demo categorid videoid
+            </NavLink>
+        </div>
+        
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/routing-demo/?FirstName=Jan&LastName=Kowalski">
+                Routing demo query parameters
+            </NavLink>
+        </div>
+        
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/routing-demo/CodeBehind">
+                Routing demo CodeBehind
+            </NavLink>
+        </div>
+        
     </nav>
 </div>
 

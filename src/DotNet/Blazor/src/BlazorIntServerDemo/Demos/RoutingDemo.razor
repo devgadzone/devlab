@@ -1,0 +1,35 @@
+﻿@page "/routing-demo"
+@page "/routing-demo/{Id:int}"
+@page "/routing-demo/user/{Name}"
+@page "/routing-demo/videos/{CategoryId:int}/{VideoId:int}"
+
+<h3>RoutingDemo</h3>
+
+<p>Id: @(Id == null ? "Brak Id" : Id)</p>
+<p>Name: @(Name ?? "Brak Name")</p>
+<p>CategoryId: @(CategoryId == null ? "Brak CategoryId" : CategoryId)</p>
+<p>VideoId: @(VideoId == null ? "Brak VideoId" : VideoId)</p>
+<p>first and Last name: @(FirstName ?? "Brak FirstName") @(LastName ?? "Brak LastName")</p>
+
+@code {
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    [Parameter]
+    public string? Name { get; set; }
+
+    [Parameter]
+    public int? CategoryId { get; set; }
+
+    [Parameter]
+    public int? VideoId { get; set; }
+
+    [SupplyParameterFromQuery(Name = "FirstName")]
+    public string? FirstName { get; set; }
+
+    [SupplyParameterFromQuery(Name = "LastName")]
+    public string? LastName  { get; set; }
+
+
+}
