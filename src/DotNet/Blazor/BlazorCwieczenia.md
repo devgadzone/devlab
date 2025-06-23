@@ -13,6 +13,9 @@
   - `dotnet new blazor -int Server -o src\BlazorIntServerDemo -n BlazorIntServerDemo -f net9.0 -lang C# -au None `
   - `dotnet sln add src\BlazorIntServerDemo`
 
+### Interactivity: WebAssembly
+  - `dotnet new blazor -int WebAssembly -o src\BlazorIntWebAssemblyDemo -n BlazorIntWebAssemblyDemo -f net9.0 -lang C# -au None`
+
 ### Interactivity: AUTO
   - `dotnet new blazor -int Auto -o src\BlazorIntAutoDemo -n BlazorIntAutoDemo -f net9.0 -lang C# -au None`
 
