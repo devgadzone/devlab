@@ -1,0 +1,33 @@
+﻿@page "/ServicesDemo"
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
+@using BlazorServices.Services
+@using Microsoft.AspNetCore.Components.Web
+@inject IGreetingTransientService transient
+@inject IGreetingScopedService scoped
+@inject IGreetingSingletonService singleton
+
+<h3>ServicesDemo</h3>
+
+<p>
+    Transient: @transientMessage <br/>
+    Scoped: @scopedMessage <br/>
+    Singleton: @singletonMessage
+</p>
+<button @onclick="SayHello">Say hello Jan</button>
+
+
+@code{
+    private string transientMessage;
+    private string scopedMessage;
+    private string singletonMessage;
+
+    private void SayHello()
+    {
+        string name = "Jan";
+        transientMessage = transient.SayHello(name);
+        scopedMessage = scoped.SayHello(name);
+        singletonMessage = singleton.SayHello(name);
+    }
+
+
+}

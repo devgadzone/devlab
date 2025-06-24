@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorIntWebAssemblyDemo", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorIntWebAssemblyDemo.Client", "src\BlazorIntWebAssemblyDemo\BlazorIntWebAssemblyDemo.Client\BlazorIntWebAssemblyDemo.Client.csproj", "{3B67AEB5-9131-47CC-94B4-9282C1DCAFB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServices", "src\BlazorServices\BlazorServices.csproj", "{24C38F8C-A3EE-4746-9202-6407B710B0EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{3B67AEB5-9131-47CC-94B4-9282C1DCAFB8}.Release|x64.Build.0 = Release|Any CPU
 		{3B67AEB5-9131-47CC-94B4-9282C1DCAFB8}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B67AEB5-9131-47CC-94B4-9282C1DCAFB8}.Release|x86.Build.0 = Release|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Debug|x64.Build.0 = Debug|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Release|x64.ActiveCfg = Release|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Release|x64.Build.0 = Release|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,5 +120,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A5C2394A-2404-4B75-8FD7-DAAE6E58684C} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{1A51F196-CE1F-4309-B00B-01BB14E5C5FF} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{24C38F8C-A3EE-4746-9202-6407B710B0EA} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

@@ -1,10 +1,14 @@
 using BlazorIntServerDemo.Components;
+using BlazorServices.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddTransient<IGreetingTransientService, GreetingService>();
+builder.Services.AddScoped<IGreetingScopedService, GreetingService>();
+builder.Services.AddSingleton<IGreetingSingletonService, GreetingService>();
 
 var app = builder.Build();
 

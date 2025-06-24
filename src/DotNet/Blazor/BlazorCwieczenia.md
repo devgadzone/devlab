@@ -70,14 +70,14 @@
 ## 4. Dependency Injection
 
 ### Zadania:
-- [ ] **Utwórz nowy projekt biblioteki klas `BlazorServices`**
-- [ ] **Stwórz interfejs `IGreetingService`**
-- [ ] **Implementuj serwisy:**
+- [X] **Utwórz nowy projekt biblioteki klas `BlazorServices`**
+- [X] **Stwórz interfejs `IGreetingService`**
+- [X] **Implementuj serwisy:**
   - `TransientGreetingService` - nowa instancja przy każdym wywołaniu
   - `SingletonGreetingService` - jedna instancja dla całej aplikacji
   - `ScopedGreetingService` - jedna instancja per request
-- [ ] **Zarejestruj serwisy w `Program.cs`**
-- [ ] **Utwórz komponent `ServiceDemo.razor` używający wszystkich serwisów**
+- [X] **Zarejestruj serwisy w `Program.cs`**
+- [X] **Utwórz komponent `ServiceDemo.razor` używający wszystkich serwisów**
 
 ---
 
