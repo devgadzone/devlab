@@ -110,10 +110,10 @@
 
 ### Zadania:
 
-- [ ] **Utwórz komponent z atrybutem `[Authorize]`**
-- [ ] **Implementuj custom `RouteAttribute`**
-- [ ] **Utwórz `MyButton.razor` z `CaptureUnmatchedValues`**
-- [ ] **Przetestuj przekazywanie dodatkowych atrybutów HTML**
+- [X] **Utwórz komponent z atrybutem `[Authorize]`**
+- [X] **Implementuj custom `RouteAttribute`**
+- [X] **Utwórz `MyButton.razor` z `CaptureUnmatchedValues`**
+- [X] **Przetestuj przekazywanie dodatkowych atrybutów HTML**
 
 ---
 

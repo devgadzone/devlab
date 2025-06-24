@@ -1,0 +1,8 @@
+﻿<button @attributes="Attributes">Click Me!</button>
+
+@code {
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? Attributes { get; set; }
+
+}
