@@ -1,0 +1,29 @@
+﻿@page "/GenericListDemo"
+<h3>GenericListDemo</h3>
+
+<h4>Strings</h4>
+<GenericList TItem="string" Items="_owoce"/>
+
+<h4>Int</h4>
+<GenericList TItem="int" Items="_liczby"/>
+
+<h4>Persons</h4>
+<GenericList TItem="Person" Items="_persons"/>
+
+@code {
+
+    private List<string> _owoce = new() { "Jabłka", "Maliny", "Banany" };
+    private List<int> _liczby = new() { 1, 2, 5, 10, 99, 1234, int.MaxValue };
+    private List<Person> _persons = new()
+    {
+        new Person() {Name = "Jan", LastName = "Kowalski"},
+        new Person() {Name = "Janina", LastName = "Kowalska"}
+    };
+
+    class Person
+    {
+        public string Name { get; set; }
+        public string LastName { get; set; }
+    }
+}
+
