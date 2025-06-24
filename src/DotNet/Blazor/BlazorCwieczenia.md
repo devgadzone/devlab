@@ -201,9 +201,9 @@
 
 ### Zadania:
 
-- [ ] **Utwórz `ProductList.razor` i `ProductList.razor.cs`**
-- [ ] **Przenieś całą logikę do pliku .cs**
-- [ ] **Implementuj partial class**
+- [X] **Utwórz `ProductList.razor` i `ProductList.razor.cs`**
+- [X] **Przenieś całą logikę do pliku .cs**
+- [X] **Implementuj partial class**
 
 ---
 
