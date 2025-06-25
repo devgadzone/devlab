@@ -132,14 +132,14 @@
 
 ### Zadania:
 
-- [ ] **Utwórz `CustomLayout.razor`**
-- [ ] **Implementuj niestandardowy layout z:**
+- [X] **Utwórz `CustomLayout.razor`**
+- [X] **Implementuj niestandardowy layout z:**
     - Header
     - Sidebar
     - Main content area
     - Footer
-- [ ] **Utwórz komponent używający tego layoutu**
-- [ ] **Dodaj `_Imports.razor` dla layoutu**
+- [X] **Utwórz komponent używający tego layoutu**
+- [X] **Dodaj `_Imports.razor` dla layoutu**
 
 ---
 
