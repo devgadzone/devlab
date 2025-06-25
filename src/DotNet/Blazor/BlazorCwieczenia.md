@@ -158,13 +158,13 @@
 
 ### Zadania:
 
-- [ ] **Utwórz `DataBindingDemo.razor`**
-- [ ] **Implementuj różne typy bindowania dla znaczników html oraz wbudowanych komponentów Razor np. 'InputTexxt':**
+- [X] **Utwórz `DataBindingDemo.razor`**
+- [X] **Implementuj różne typy bindowania dla znaczników html oraz wbudowanych komponentów Razor np. 'InputTexxt':**
     - dwukierunkowe
     - jednokierunkowe
     - z custom eventem
-- [ ] **Stwórz custom komponent z bindingiem**
-- [ ] **Dodaj `Value`, `ValueChanged`, `ValueExpression`**
+- [X] **Stwórz custom komponent z bindingiem**
+- [X] **Dodaj `Value`, `ValueChanged`, `ValueExpression`**
 
 ---
 

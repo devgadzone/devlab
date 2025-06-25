@@ -1,0 +1,20 @@
+﻿@page "/BindingDataDemo"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode @(new InteractiveServerRenderMode())
+
+<h3>BindingDataDemo</h3>
+
+@textValue
+
+<BindingDataCustomDemo Value="@textValue"
+                 ValueChanged="TextValueHandler"/>
+
+@code {
+    private string textValue = "Before chagne";
+
+    private void TextValueHandler(string name)
+    {
+        textValue = name;
+    }
+
+}

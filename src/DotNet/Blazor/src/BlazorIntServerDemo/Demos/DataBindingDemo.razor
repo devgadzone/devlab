@@ -1,0 +1,32 @@
+﻿@page "/DataBindingDemo"
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Forms
+@rendermode @(new InteractiveServerRenderMode())
+<h3>DataBindingDemo</h3>
+
+
+<p>
+    <input type="text" value="@textValue01"/> @textValue01<br/>
+    <input type="text" @bind="@textValue02" vlaue="@textValue02"/> @textValue02<br/>
+    <input type="text" @bind-value="@textValue03"/> @textValue03<br/>
+    <InputText @bind-Value="@textValue04"/> @textValue04<br/>
+</p>
+
+<p>
+    <InputText @bind-Value="textValue05"
+               @bind-Value:after="@(() => { textValue05 += " After"; })"/> @textValue05<br/>
+    
+    <input 
+        @bind-value:set="@((newValue) => { textValue06 = newValue;} )"
+        @bind-value:get="textValue06"/> @textValue06<br/>
+</p>
+
+@code {
+    private string textValue01 = string.Empty;
+    private string textValue02 = string.Empty;
+    private string textValue03 = string.Empty;
+    private string textValue04 = string.Empty;
+    private string textValue05 = string.Empty;
+    private string textValue06 = string.Empty;
+    private string textValue07 = string.Empty;
+}
