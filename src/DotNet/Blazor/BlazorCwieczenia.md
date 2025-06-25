@@ -121,10 +121,10 @@
 
 ### Zadania:
 
-- [ ] **Utwórz folder `Admin` w `Components`**
-- [ ] **Dodaj `_Imports.razor` tylko dla folderu `Admin`**
-- [ ] **Dodaj specyficzne importy dla komponentów administracyjnych**
-- [ ] **Utwórz komponent `AdminPanel.razor` używający tych importów**
+- [X] **Utwórz folder `Admin` w `Demos`**
+- [X] **Dodaj `_Imports.razor` tylko dla folderu `Admin`**
+- [X] **Dodaj specyficzne importy dla komponentów administracyjnych**
+- [X] **Utwórz komponent `AdminPanel.razor` używający tych importów**
 
 ---
 
