@@ -1,0 +1,19 @@
+﻿@page "/CounterDemo"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode @(new InteractiveServerRenderMode())
+<h3>CounterDemo</h3>
+
+<p>
+    Counter: @_counter
+</p>
+<button @onclick="Count">Click Me!</button>
+
+@code {
+    private int _counter = 0;
+
+    private void Count()
+    {
+        _counter++;
+    }
+
+}

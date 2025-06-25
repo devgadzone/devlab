@@ -1,8 +1,20 @@
-﻿<button @attributes="Attributes">Click Me!</button>
+﻿@using Microsoft.AspNetCore.Components.Web
+@rendermode @(new InteractiveServerRenderMode())
+
+<button @attributes="Attributes"
+        @onclick="Click">Click Me!</button>
 
 @code {
 
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? Attributes { get; set; }
+    
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    private async Task Click()
+    {
+        await OnClick.InvokeAsync();
+    }
 
 }

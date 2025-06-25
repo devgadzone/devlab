@@ -1,0 +1,20 @@
+﻿@page "/CounterWithButtonDemo"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode @(new InteractiveServerRenderMode())
+<h3>CounterWithButtonDemo</h3>
+
+<p>
+    Count: @_counter
+</p>
+
+<MyButton class="btn btn-primary"
+          OnClick="ClickHandler">Click Me!</MyButton>
+
+@code  {
+    private int _counter = 0;
+
+    private void ClickHandler()
+    {
+        _counter++;
+    }
+}

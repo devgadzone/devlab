@@ -147,10 +147,10 @@
 
 ### Zadania:
 
-- [ ] **Utwórz `Counter.razor` z podstawowym onclick**
-- [ ] **Implementuj `MyButton` z EventCallback**
-- [ ] **Stwórz komponent `CounterWithButton` używający MyButton**
-- [ ] **Dodaj invoke async event handling**
+- [X] **Utwórz `Counter.razor` z podstawowym onclick**
+- [X] **Implementuj `MyButton` z EventCallback**
+- [X] **Stwórz komponent `CounterWithButton` używający MyButton**
+- [X] **Dodaj invoke async event handling**
 
 ---
 
