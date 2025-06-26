@@ -1,0 +1,29 @@
+﻿@page "/CascadeDemo"
+<h3>CascadeDemo</h3>
+
+<h4>Without CascadingValue</h4>
+<CascadeComponent FirstName="@firstName"/>
+<CascadeComponent FirstName="@firstName"/>
+
+<h4>CascadingValueWithName</h4>
+<CascadingValue TValue="string" Value="@lastName" Name="CParam" IsFixed="true">
+    <CascadeComponent/>
+    <CascadeComponent/>
+    
+</CascadingValue>
+
+<CascadingValue TValue="string" Value="@lastName" Name="CParam" IsFixed="false">
+    <CascadeComponent FirstName="Jan"/>
+    <CascadeComponent FirstName="Janina"/>
+    
+</CascadingValue>
+
+
+<h4>root level</h4>
+<CascadeRoot/>
+
+@code {
+    private string firstName = "Jan";
+    private string lastName = "Kowalksi";
+
+}

@@ -1,0 +1,14 @@
+﻿<h3>CascadeComponent</h3>
+
+<p>FirstName: @FirstName</p>
+<p>LastName: @LastName</p>
+
+@code {
+
+    [Parameter]
+    public string FirstName { get; set; }
+
+    [CascadingParameter(Name = "CParam")]
+    public string LastName { get; set; }
+
+}

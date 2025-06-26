@@ -1,5 +1,7 @@
 using BlazorIntServerDemo.Components;
+using BlazorIntServerDemo.Demos;
 using BlazorServices.Services;
+using Microsoft.AspNetCore.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,16 @@ builder.Services.AddRazorComponents()
 builder.Services.AddTransient<IGreetingTransientService, GreetingService>();
 builder.Services.AddScoped<IGreetingScopedService, GreetingService>();
 builder.Services.AddSingleton<IGreetingSingletonService, GreetingService>();
+
+builder.Services.TryAddCascadingValue(sp =>
+{
+    var model = new UserContext();
+    model.UserId = Guid.NewGuid();
+    model.Name = "User from Root component";
+    var source = new CascadingValueSource<UserContext>(model, isFixed: false);
+    
+    return source;
+});
 
 var app = builder.Build();
 

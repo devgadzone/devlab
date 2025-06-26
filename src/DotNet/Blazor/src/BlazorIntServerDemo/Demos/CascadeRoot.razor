@@ -1,0 +1,13 @@
+﻿<h3>CascadeRoot</h3>
+
+<p>
+    UserId: @Model.UserId
+    Name: @Model.Name
+</p>
+
+@code {
+
+    [CascadingParameter]
+    public required UserContext Model { get; set; }
+
+}

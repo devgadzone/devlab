@@ -186,14 +186,14 @@
 
 ### Zadania:
 
-- [ ] **Utwórz component CascadeDemo.razor'
-- [ ] **Przekaż parametry bez cascade**
-- [ ] **Utwórz model `UserContext`**
-- [ ] **Implementuj `CascadingValue` w głównym komponencie**
-- [ ] **Stwórz komponenty potomne używające `CascadingParameter`**
-- [ ] **Przekaż parametr po typie i nazwie np. 'CParam'**
-- [ ] **Porównaj wydajność z i bez `IsFixed="true"`**
-- [ ] **Dodaj cascading parameter na poziomie root (Program.cs)**
+- [X] **Utwórz component CascadeDemo.razor'
+- [X] **Przekaż parametry bez cascade**
+- [X] **Utwórz model `UserContext`**
+- [X] **Implementuj `CascadingValue` w głównym komponencie**
+- [X] **Stwórz komponenty potomne używające `CascadingParameter`**
+- [X] **Przekaż parametr po typie i nazwie np. 'CParam'**
+- [X] **Porównaj wydajność z i bez `IsFixed="true"`**
+- [X] **Dodaj cascading parameter na poziomie root (Program.cs)**
 
 ---
 
