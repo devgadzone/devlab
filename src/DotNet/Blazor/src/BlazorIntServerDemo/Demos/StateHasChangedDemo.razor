@@ -1,0 +1,18 @@
+﻿@page "/StateHasChangedDemo"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode @(new InteractiveServerRenderMode())
+<h3>StateHasChangedDemo</h3>
+
+<p>count: @count</p>
+
+<MyButton class="btn btn-primary" OnClick="ButtonHandler"/>
+@code {
+    private int count = 0;
+
+    private async Task ButtonHandler()
+    {
+        await Task.Delay(3000);
+        count++;
+    }
+    
+}

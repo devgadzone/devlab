@@ -172,11 +172,11 @@
 
 ### Zadania:
 
-- [ ] **Utwórz `ClockComponent.razor`**
+- [X] **Utwórz `ClockComponent.razor`**
     - Wyświetl aktualny czas
     - Aktualizuj co sekundę
     - Użyj `StateHasChanged()`
-- [ ] **W `MyButton.razor`**
+- [X] **W `MyButton.razor`**
     - Po kliknięciu staje się disabled na 2 sekundy
     - Automatycznie wraca do stanu aktywnego
 

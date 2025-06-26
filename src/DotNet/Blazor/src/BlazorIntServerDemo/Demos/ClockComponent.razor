@@ -1,0 +1,23 @@
+﻿@page "/ClockComponent"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode @(new InteractiveServerRenderMode())
+<h3>ClockComponent</h3>
+
+@currentTime.ToLongTimeString()
+
+@code {
+    TimeOnly currentTime;
+    System.Threading.Timer timer;
+
+    protected override void OnInitialized()
+    {
+        timer = new System.Threading.Timer(async _ =>
+        {
+            currentTime = TimeOnly.FromDateTime(DateTime.Now);
+            await InvokeAsync(StateHasChanged);
+        },null, 0, 100);
+        
+        base.OnInitialized();
+    }
+
+}

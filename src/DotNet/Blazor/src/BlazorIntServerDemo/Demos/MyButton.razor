@@ -2,9 +2,12 @@
 @rendermode @(new InteractiveServerRenderMode())
 
 <button @attributes="Attributes"
-        @onclick="Click">Click Me!</button>
+        @onclick="Click"
+        disabled="@isDisabled">Click Me!</button>
 
 @code {
+    private bool isExecuting = false;
+    private bool isDisabled => isExecuting;
 
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? Attributes { get; set; }
@@ -14,7 +17,15 @@
 
     private async Task Click()
     {
+        if (isExecuting)
+        {
+            return;
+        }
+
+        isExecuting = true;
+        await InvokeAsync(StateHasChanged);
         await OnClick.InvokeAsync();
+        isExecuting = false;
     }
 
 }
