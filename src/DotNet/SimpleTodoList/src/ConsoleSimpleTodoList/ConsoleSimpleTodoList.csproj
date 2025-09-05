@@ -6,11 +6,18 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <Nullable>enable</Nullable>
+        <UserSecretsId>b1a3e0eb-7fdb-4880-99ab-bdcbaa29aae4</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Dapper" Version="2.1.66" />
       <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
+      <Folder Include="Persistances\" />
+      <Folder Include="Repositories\" />
     </ItemGroup>
 
 </Project>
