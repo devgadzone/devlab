@@ -1,7 +1,13 @@
-﻿using static System.Console;
+﻿using ConsoleSimpleTodoList;
+using Dapper;
+using Microsoft.Data.Sqlite;
+using static System.Console;
+
+string connectionString = "Data Source=Todos.db;";
 
 WriteLine("Hello!\n");
 
+await InitialDB();
 Initial();
 
 void Initial()
@@ -67,7 +73,20 @@ void UserChoice(string userInput, out bool isUserExit)
 
 void Create()
 {
-    WriteLine("Enter the TODO unique description:");
+    WriteLine("\nEnter the TODO unique description:");
+    Write("\n> ");
+    string? userInput = ReadLine();
+
+    if (!string.IsNullOrWhiteSpace(userInput))
+    {
+        Todo todo = new()
+        {
+            Description = userInput,
+            CreatedAt = DateTime.Now
+        };
+
+        SaveData(todo);
+    }
 }
 
 void Read()
@@ -83,4 +102,29 @@ void Update()
 void Delete()
 {
     WriteLine("Delete");
+}
+
+
+async Task InitialDB()
+{
+    var sql = """
+              CREATE TABLE IF NOT EXISTS main.Todos (
+                  Id INTEGER NOT NULL,
+                  Description TEXT NOT NULL,    
+                  CreatedAt TEXT NOT NULL,
+                  PRIMARY KEY (Id AUTOINCREMENT)
+              );
+              """;
+
+    using (var cnx = new SqliteConnection(connectionString))
+    {
+        await cnx.ExecuteAsync(sql);
+    }
+}
+
+void SaveData(Todo model)
+{
+    using (var cnx = new SqliteConnection(connectionString))
+    {
+    }
 }
