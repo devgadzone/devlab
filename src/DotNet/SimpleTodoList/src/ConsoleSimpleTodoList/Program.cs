@@ -85,7 +85,7 @@ void Create()
             CreatedAt = DateTime.Now
         };
 
-        SaveData(todo);
+        SaveData(todo, SqlActions.Create);
     }
 }
 
@@ -122,7 +122,7 @@ async Task InitialDB()
     }
 }
 
-void SaveData(Todo model)
+void SaveData(Todo model, SqlActions action)
 {
     using (var cnx = new SqliteConnection(connectionString))
     {
