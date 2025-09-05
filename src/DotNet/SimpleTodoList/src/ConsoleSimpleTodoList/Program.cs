@@ -49,7 +49,7 @@ async Task<bool> UserChoice(string userInput)
     switch (userInput)
     {
         case "S":
-            Read();
+            await Read();
             break;
         case "A":
             await Create();
@@ -67,12 +67,13 @@ async Task<bool> UserChoice(string userInput)
             WriteLine("\nInvalid choice.");
             break;
     }
-    
+
     return false;
 }
 
 async Task Create()
 {
+    //TODO: VALIDATION
     WriteLine("\nEnter the TODO unique description:");
     Write("\n> ");
     string? userInput = ReadLine();
@@ -89,9 +90,26 @@ async Task Create()
     }
 }
 
-void Read()
+async Task Read()
 {
-    WriteLine("Read");
+    Clear();
+    WriteLine("Read all todos\n");
+    var todos = await LoadData(0);
+
+    if (todos.Count == 0)
+    {
+        WriteLine("No todos found.\n");
+    }
+    else
+    {
+        foreach (var todo in todos)
+        {
+            WriteLine($"{todo.Id} - {todo.Description} - {todo.CreatedAt.ToShortDateString()}");
+        }
+    }
+
+    Write("\nPress any key to continue...");
+    ReadKey();
 }
 
 void Update()
@@ -142,5 +160,33 @@ async Task SaveData(Todo model, SqlActions action)
         {
             await cnx.ExecuteAsync(sql, model, commandType: CommandType.Text);
         }
+    }
+}
+
+async Task<List<Todo>> LoadData(int id)
+{
+    var sql = string.Empty;
+
+    if (id > 0)
+    {
+        sql = """
+              SELECT Id, Description, CreatedAt FROM main.Todos
+              WHERE Id = @Id
+              ORDER BY CreatedAt DESC;
+              """;
+    }
+    else
+    {
+        sql = "SELECT Id, Description, CreatedAt FROM main.Todos ORDER BY CreatedAt DESC;";
+    }
+
+    using (var cnx = new SqliteConnection(connectionString))
+    {
+        var output = await cnx.QueryAsync<Todo>(
+            sql,
+            new { Id = id },
+            commandType: CommandType.Text);
+
+        return output.ToList<Todo>();
     }
 }
