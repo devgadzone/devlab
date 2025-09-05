@@ -1,4 +1,5 @@
-﻿using ConsoleSimpleTodoList;
+﻿using System.Data;
+using ConsoleSimpleTodoList;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using static System.Console;
@@ -8,9 +9,9 @@ string connectionString = "Data Source=Todos.db;";
 WriteLine("Hello!\n");
 
 await InitialDB();
-Initial();
+await Initial();
 
-void Initial()
+async Task Initial()
 {
     bool isUserExit = false;
     do
@@ -23,7 +24,7 @@ void Initial()
         if (string.IsNullOrWhiteSpace(userInput))
             continue;
 
-        UserChoice(userInput, out isUserExit);
+        isUserExit = await UserChoice(userInput);
     } while (isUserExit == false);
 }
 
@@ -43,17 +44,15 @@ void MainMenu()
     Write("\nYour choice: ");
 }
 
-void UserChoice(string userInput, out bool isUserExit)
+async Task<bool> UserChoice(string userInput)
 {
-    isUserExit = false;
-
     switch (userInput)
     {
         case "S":
             Read();
             break;
         case "A":
-            Create();
+            await Create();
             break;
         case "U":
             Update();
@@ -63,15 +62,16 @@ void UserChoice(string userInput, out bool isUserExit)
             break;
         case "E":
             WriteLine("\nGoodbye!");
-            isUserExit = true;
-            break;
+            return true;
         default:
             WriteLine("\nInvalid choice.");
             break;
     }
+    
+    return false;
 }
 
-void Create()
+async Task Create()
 {
     WriteLine("\nEnter the TODO unique description:");
     Write("\n> ");
@@ -85,7 +85,7 @@ void Create()
             CreatedAt = DateTime.Now
         };
 
-        SaveData(todo, SqlActions.Create);
+        await SaveData(todo, SqlActions.Create);
     }
 }
 
@@ -122,9 +122,25 @@ async Task InitialDB()
     }
 }
 
-void SaveData(Todo model, SqlActions action)
+async Task SaveData(Todo model, SqlActions action)
 {
-    using (var cnx = new SqliteConnection(connectionString))
+    var sql = string.Empty;
+
+    switch (action)
     {
+        case SqlActions.Create:
+            sql = """
+                  INSERT INTO main.Todos (Description, CreatedAt) 
+                  VALUES (@Description, @CreatedAt);
+                  """;
+            break;
+    }
+
+    if (!string.IsNullOrWhiteSpace(sql))
+    {
+        using (var cnx = new SqliteConnection(connectionString))
+        {
+            await cnx.ExecuteAsync(sql, model, commandType: CommandType.Text);
+        }
     }
 }
