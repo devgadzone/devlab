@@ -58,7 +58,7 @@ async Task<bool> UserChoice(string userInput)
             Update();
             break;
         case "R":
-            Delete();
+            await Delete();
             break;
         case "E":
             WriteLine("\nGoodbye!");
@@ -117,9 +117,28 @@ void Update()
     WriteLine("Update");
 }
 
-void Delete()
+async Task Delete()
 {
-    WriteLine("Delete");
+    await Read();
+    bool isIdValid = false;
+
+    do
+    {
+        WriteLine("\nEnter ID to delete:");
+        Write("> ");
+
+        string? userInput = ReadLine();
+        isIdValid = int.TryParse(userInput, out int id);
+
+        if (isIdValid == false)
+        {
+            WriteLine("\nInvalid ID as number.");
+        }
+        else
+        {
+            await SaveData(null, SqlActions.Delete, id);
+        }
+    } while (isIdValid == false);
 }
 
 
@@ -140,7 +159,7 @@ async Task InitialDB()
     }
 }
 
-async Task SaveData(Todo model, SqlActions action)
+async Task SaveData(Todo? model, SqlActions action, int id = 0)
 {
     var sql = string.Empty;
 
@@ -152,13 +171,25 @@ async Task SaveData(Todo model, SqlActions action)
                   VALUES (@Description, @CreatedAt);
                   """;
             break;
+        case SqlActions.Delete:
+            sql = "DELETE FROM main.Todos WHERE Id = @Id;";
+            break;
+        default:
+            return;
     }
 
     if (!string.IsNullOrWhiteSpace(sql))
     {
         using (var cnx = new SqliteConnection(connectionString))
         {
-            await cnx.ExecuteAsync(sql, model, commandType: CommandType.Text);
+            if (id == 0)
+            {
+                await cnx.ExecuteAsync(sql, model, commandType: CommandType.Text);
+            }
+            else
+            {
+                await cnx.ExecuteAsync(sql, new { Id = id }, commandType: CommandType.Text);
+            }
         }
     }
 }
