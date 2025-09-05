@@ -55,7 +55,7 @@ async Task<bool> UserChoice(string userInput)
             await Create();
             break;
         case "U":
-            Update();
+            await Update();
             break;
         case "R":
             await Delete();
@@ -112,9 +112,36 @@ async Task Read()
     ReadKey();
 }
 
-void Update()
+async Task Update()
 {
-    WriteLine("Update");
+    await Read();
+    bool isIdValid = false;
+
+    do
+    {
+        WriteLine("\nEnter ID to delete:");
+        Write("> ");
+
+        string? userInput = ReadLine();
+        isIdValid = int.TryParse(userInput, out int id);
+
+        if (isIdValid == false)
+        {
+            WriteLine("\nInvalid ID as number.");
+        }
+        else
+        {
+            WriteLine("\nEnter the new description:");
+            Write("> ");
+            userInput = ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(userInput))
+            {
+                Todo todo = new Todo() { Id = id, Description = userInput, CreatedAt = DateTime.Now };
+                await SaveData(todo, SqlActions.Update);
+            }
+        }
+    } while (isIdValid == false);
 }
 
 async Task Delete()
@@ -169,6 +196,13 @@ async Task SaveData(Todo? model, SqlActions action, int id = 0)
             sql = """
                   INSERT INTO main.Todos (Description, CreatedAt) 
                   VALUES (@Description, @CreatedAt);
+                  """;
+            break;
+        case SqlActions.Update:
+            sql = """
+                  UPDATE main.Todos 
+                  SET Description = @Description, CreatedAt = @CreatedAt 
+                  WHERE Id = @Id
                   """;
             break;
         case SqlActions.Delete:
