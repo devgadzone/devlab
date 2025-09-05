@@ -4,6 +4,12 @@ using Dapper;
 using Microsoft.Data.Sqlite;
 using static System.Console;
 
+
+/*
+ * SZKIC PROGRAMU
+ * TODO: REFACTOWANIE
+ */
+
 string connectionString = "Data Source=Todos.db;";
 
 WriteLine("Hello!\n");
