@@ -2,6 +2,13 @@
 
 public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
 {
+    private readonly ISqlDataAccess _sqlDb;
+
+    public TodoRepository(ISqlDataAccess sqlDb)
+    {
+        _sqlDb = sqlDb;
+    }
+
     public Task<IEnumerable<T>> GetAllAsync()
     {
         throw new NotImplementedException();
