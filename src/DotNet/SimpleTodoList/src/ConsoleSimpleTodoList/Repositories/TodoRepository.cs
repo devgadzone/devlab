@@ -30,7 +30,7 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
                   INSERT INTO main.Todos (Description, CreatedAt) 
                   VALUES (@Description, @CreatedAt);
                   """;
-        
+
         return _sqlDb.SaveDataAsync(sql, model, CommandType.Text);
     }
 
