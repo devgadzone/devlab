@@ -1,11 +1,11 @@
 ﻿namespace ConsoleSimpleTodoList.Persistances;
 
-public class SqlDataAccess : ISqlDataAccess
+public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
 {
     private readonly IConfiguration _configuration;
     private ILogger _logger;
 
-    public SqlDataAccess(IConfiguration configuration, ILogger<SqlDataAccess> logger)
+    public SqlDataAccess(IConfiguration configuration, ILogger<SqlDataAccess<TKey>> logger)
     {
         _logger = logger;
         _configuration = configuration;
@@ -19,12 +19,16 @@ public class SqlDataAccess : ISqlDataAccess
         }
     }
 
-    public async Task SaveDataAsync<T>(string command, T parameters, CommandType commandType)
+    public async Task<TKey> SaveDataAsync<T>(string command, T parameters, CommandType commandType)
     {
         using (var cnx = GetConnection())
         {
             //TODO: Exectute in Transaction
-            await cnx.ExecuteAsync(command, parameters, commandType: commandType);
+            TKey key = (TKey) Convert.ChangeType(
+                await cnx.ExecuteAsync(command, parameters, commandType: commandType),
+                typeof(TKey));
+            
+            return key;
         }
     }
 
