@@ -33,7 +33,7 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
     {
         var sql = """
                   UPDATE main.Todos 
-                  SET Description = @Description, CreatedAt = @CreatedAt 
+                  SET Description = @Description, UpdatedAt = @UpdatedAt
                   WHERE Id = @Id
                   """;
 
