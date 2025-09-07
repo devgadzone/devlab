@@ -1,5 +1,4 @@
-﻿using ConsoleSimpleTodoList;
-using static System.Console;
+﻿using static System.Console;
 
 
 /*
