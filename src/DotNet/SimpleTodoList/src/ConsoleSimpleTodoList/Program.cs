@@ -1,7 +1,4 @@
-﻿using System.Data;
-using ConsoleSimpleTodoList;
-using Dapper;
-using Microsoft.Data.Sqlite;
+﻿using ConsoleSimpleTodoList;
 using static System.Console;
 
 
