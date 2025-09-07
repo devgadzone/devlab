@@ -26,7 +26,12 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
 
     public Task<TKey> AddAsync(T model)
     {
-        throw new NotImplementedException();
+        var sql = """
+                  INSERT INTO main.Todos (Description, CreatedAt) 
+                  VALUES (@Description, @CreatedAt);
+                  """;
+        
+        return _sqlDb.SaveDataAsync(sql, model, CommandType.Text);
     }
 
     public Task<TKey> UpdateAsync(T model)
