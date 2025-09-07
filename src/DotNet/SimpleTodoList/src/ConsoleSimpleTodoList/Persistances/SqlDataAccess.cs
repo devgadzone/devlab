@@ -3,9 +3,11 @@
 public class SqlDataAccess : ISqlDataAccess
 {
     private readonly IConfiguration _configuration;
+    private ILogger _logger;
 
-    public SqlDataAccess(IConfiguration configuration)
+    public SqlDataAccess(IConfiguration configuration, ILogger logger)
     {
+        _logger = logger;
         _configuration = configuration;
     }
 
