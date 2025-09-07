@@ -31,13 +31,19 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
 
     public Task<TKey> UpdateAsync(T model)
     {
-        throw new NotImplementedException();
+        var sql = """
+                  UPDATE main.Todos 
+                  SET Description = @Description, CreatedAt = @CreatedAt 
+                  WHERE Id = @Id
+                  """;
+
+        return _sqlDb.SaveDataAsync(sql, model, CommandType.Text);
     }
 
     public async Task<TKey> DeleteAsync(TKey id)
     {
         var sql = "DELETE FROM main.Todos WHERE Id = @Id;";
-        
+
         return await _sqlDb.SaveDataAsync(sql, new { Id = id }, CommandType.Text);
     }
 }
