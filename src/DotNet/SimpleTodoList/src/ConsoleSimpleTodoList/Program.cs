@@ -1,5 +1,4 @@
-﻿using static System.Console;
-
+﻿
 
 /*
  * SZKIC PROGRAMU
@@ -14,13 +13,9 @@ var builder = new ConfigurationBuilder()
 
 IConfiguration configuration = builder.Build();
 
-if (configuration.GetConnectionString("SQLite") is null)
-    throw new Exception("Configuration connection string not found.");
-
-string? connectionString = configuration.GetConnectionString("SQLite");
-
-if (string.IsNullOrWhiteSpace(connectionString))
-    throw new Exception("Connection string not found.");
+using IHost host = CreateHostBuilder(args).Build();
+using var scope = host.Services.CreateScope();
+var serviceProvider = scope.ServiceProvider;
 
 WriteLine("Hello!\n");
 
@@ -102,7 +97,15 @@ async Task Create()
             CreatedAt = DateTime.Now
         };
 
-        await SaveData(todo, SqlActions.Create);
+        var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+
+        if (todoService is not null)
+        {
+            var result = await todoService.AddAsync(todo);
+            WriteLine($"\nAdded items: {result}");
+            Write("\nPress any key to continue...");
+            ReadKey();
+        }
     }
 }
 
@@ -110,14 +113,17 @@ async Task Read()
 {
     Clear();
     WriteLine("Read all todos\n");
-    var todos = await LoadData(0);
 
-    if (todos.Count == 0)
+    var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+
+    if (todoService == null)
     {
-        WriteLine("No todos found.\n");
+        WriteLine("No valid Service.\n");
     }
     else
     {
+        var todos = (await todoService.GetAllAsync()).ToList();
+
         foreach (var todo in todos)
         {
             WriteLine($"""
@@ -164,7 +170,16 @@ async Task Update()
                     Id = id, Description = userInput,
                     UpdatedAt = DateTime.Now
                 };
-                await SaveData(todo, SqlActions.Update);
+
+                var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+
+                if (todoService is not null)
+                {
+                    var restul = await todoService.UpdateAsync(todo);
+                    WriteLine($"Updated items: {restul}");
+                    Write("\nPress any key to continue...");
+                    ReadKey();
+                }
             }
         }
     } while (isIdValid == false);
@@ -189,11 +204,18 @@ async Task Delete()
         }
         else
         {
-            await SaveData(null, SqlActions.Delete, id);
+            var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+
+            if (todoService is not null)
+            {
+                var output = await todoService.DeleteAsync(id);
+                WriteLine($"\nDelete items: {output}");
+                Write("\nPress any key to continue...");
+                ReadKey();
+            }
         }
     } while (isIdValid == false);
 }
-
 
 async Task InitialDB()
 {
@@ -209,78 +231,26 @@ async Task InitialDB()
               );
               """;
 
-    using (var cnx = new SqliteConnection(connectionString))
+    using (var cnx = new SqliteConnection(configuration.GetConnectionString("SQLite")))
     {
         await cnx.ExecuteAsync(sql);
     }
 }
 
-async Task SaveData(Todo? model, SqlActions action, int id = 0)
+IHostBuilder CreateHostBuilder(string[] args)
 {
-    var sql = string.Empty;
-
-    switch (action)
-    {
-        case SqlActions.Create:
-            sql = """
-                  INSERT INTO main.Todos (Description, CreatedAt) 
-                  VALUES (@Description, @CreatedAt);
-                  """;
-            break;
-        case SqlActions.Update:
-            sql = """
-                  UPDATE main.Todos 
-                  SET Description = @Description, CreatedAt = @CreatedAt 
-                  WHERE Id = @Id
-                  """;
-            break;
-        case SqlActions.Delete:
-            sql = "DELETE FROM main.Todos WHERE Id = @Id;";
-            break;
-        default:
-            return;
-    }
-
-    if (!string.IsNullOrWhiteSpace(sql))
-    {
-        using (var cnx = new SqliteConnection(connectionString))
+    return Host.CreateDefaultBuilder(args)
+        .ConfigureLogging((context, logging) =>
         {
-            if (id == 0)
-            {
-                await cnx.ExecuteAsync(sql, model, commandType: CommandType.Text);
-            }
-            else
-            {
-                await cnx.ExecuteAsync(sql, new { Id = id }, commandType: CommandType.Text);
-            }
-        }
-    }
-}
-
-async Task<List<Todo>> LoadData(int id)
-{
-    var sql = string.Empty;
-
-    if (id > 0)
-    {
-        sql = """
-              SELECT Id, Description, CreatedAt FROM main.Todos
-              WHERE Id = @Id
-              ORDER BY CreatedAt DESC;
-              """;
-    }
-    else
-    {
-        sql = "SELECT Id, Description, CreatedAt FROM main.Todos ORDER BY CreatedAt DESC;";
-    }
-
-    using (var cnx = new SqliteConnection(connectionString))
-    {
-        var output = await cnx.QueryAsync<Todo>(
-            sql,
-            new { Id = id },
-            commandType: CommandType.Text);
-
-        return output.ToList<Todo>();
-    }
+            logging.ClearProviders();
+            logging.AddConsole();
+            logging.AddDebug();
+            logging.AddConfiguration(context.Configuration.GetSection("Logging"));
+        })
+        .ConfigureServices((_, services) =>
+        {
+            services.AddSingleton<IConfiguration>(configuration);
+            services.AddSingleton<ISqlDataAccess<int>, SqlDataAccess<int>>();
+            services.AddSingleton<ITodoRepository<Todo, int>, TodoRepository<Todo, int>>();
+        });
 }
