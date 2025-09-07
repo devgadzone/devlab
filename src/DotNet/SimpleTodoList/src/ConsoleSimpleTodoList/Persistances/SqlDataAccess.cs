@@ -11,13 +11,26 @@ public class SqlDataAccess : ISqlDataAccess
         _configuration = configuration;
     }
 
-    public Task<IEnumerable<T>> LoadData<T, U>(string command, U parameters, CommandType commandType)
+    public async Task<IEnumerable<T>> LoadDataAsync<T, U>(string command, U parameters, CommandType commandType)
     {
-        throw new NotImplementedException();
+        using (var cnx = GetConnection())
+        {
+            return await cnx.QueryAsync<T>(command, parameters, commandType: commandType);
+        }
     }
 
-    public Task SaveData<T>(string command, T parameters, CommandType commandType)
+    public async Task SaveDataAsync<T>(string command, T parameters, CommandType commandType)
     {
-        throw new NotImplementedException();
+        using (var cnx = GetConnection())
+        {
+            //TODO: Exectute in Transaction
+            await cnx.ExecuteAsync(command, parameters, commandType: commandType);
+        }
+    }
+
+    private IDbConnection GetConnection()
+    {
+        //TODO: Get Database Engine from Configuration
+        return new SqliteConnection("SQLite");
     }
 }
