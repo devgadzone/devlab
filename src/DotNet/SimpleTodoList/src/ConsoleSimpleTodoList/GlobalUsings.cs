@@ -8,3 +8,4 @@ global using Microsoft.Extensions.Logging;
 global using Dapper;
 global using ConsoleSimpleTodoList.Models;
 global using ConsoleSimpleTodoList.Persistances;
+global using ConsoleSimpleTodoList.Repositories;
