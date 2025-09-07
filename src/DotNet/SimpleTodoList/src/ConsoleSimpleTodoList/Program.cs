@@ -107,7 +107,13 @@ async Task Read()
     {
         foreach (var todo in todos)
         {
-            WriteLine($"{todo.Id} - {todo.Description} - {todo.CreatedAt.ToShortDateString()}");
+            WriteLine($"""
+                       {todo.Id} - {todo.Description}
+                            Created at: {todo.CreatedAt.ToShortDateString()}
+                            Is done: {todo.IsDone}
+                            Updated at: {(todo.UpdatedAt == null ? "Not updated yet." : todo.UpdatedAt?.ToShortDateString() )}
+                       -----------------------------------------------------
+                       """);
         }
     }
 
@@ -140,7 +146,11 @@ async Task Update()
 
             if (!string.IsNullOrWhiteSpace(userInput))
             {
-                Todo todo = new Todo() { Id = id, Description = userInput, CreatedAt = DateTime.Now };
+                Todo todo = new Todo()
+                {
+                    Id = id, Description = userInput,
+                    UpdatedAt = DateTime.Now
+                };
                 await SaveData(todo, SqlActions.Update);
             }
         }
@@ -178,7 +188,10 @@ async Task InitialDB()
               CREATE TABLE IF NOT EXISTS main.Todos (
                   Id INTEGER NOT NULL,
                   Description TEXT NOT NULL,    
-                  CreatedAt TEXT NOT NULL,
+                  IsDone INTEGER NOT NULL DEFAULT 0,
+                  CreatedAt TEXT NOT NULL DEFAULT (datetime('now')),
+                  UpdatedAt TEXT,
+                  
                   PRIMARY KEY (Id AUTOINCREMENT)
               );
               """;
