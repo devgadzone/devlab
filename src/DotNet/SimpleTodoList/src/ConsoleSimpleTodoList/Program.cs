@@ -7,7 +7,21 @@ using static System.Console;
  * TODO: REFACTOWANIE
  */
 
-string connectionString = "Data Source=Todos.db;";
+var builder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+    .AddUserSecrets<Program>();
+
+IConfiguration configuration = builder.Build();
+
+if (configuration.GetConnectionString("SQLite") is null)
+    throw new Exception("Configuration connection stringnot found.");
+
+string? connectionString = configuration.GetConnectionString("SQLite");
+
+if (string.IsNullOrWhiteSpace(connectionString))
+    throw new Exception("Connection string not found.");
 
 WriteLine("Hello!\n");
 
@@ -111,7 +125,7 @@ async Task Read()
                        Id: {todo.Id} - {todo.Description}
                             Created at: {todo.CreatedAt.ToShortDateString()}
                             Is done: {todo.IsDone}
-                            Updated at: {(todo.UpdatedAt == null ? "Not updated yet." : todo.UpdatedAt?.ToShortDateString() )}
+                            Updated at: {(todo.UpdatedAt == null ? "Not updated yet." : todo.UpdatedAt?.ToShortDateString())}
                        -----------------------------------------------------
                        """);
         }
