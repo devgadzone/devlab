@@ -14,7 +14,7 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        var sql = "SELECT Id, Description, IsDone, CreatedAt, UpdatedAt FROM main.Todos;";
+        var sql = "SELECT Id, Description, IsDone, CreatedAt, UpdatedAt FROM main.Todos ORDER BY CreatedAt DESC;";
 
         return await _sqlDb.LoadDataAsync<T, dynamic>(sql, new { }, CommandType.Text);
     }
