@@ -16,7 +16,7 @@ var builder = new ConfigurationBuilder()
 IConfiguration configuration = builder.Build();
 
 if (configuration.GetConnectionString("SQLite") is null)
-    throw new Exception("Configuration connection stringnot found.");
+    throw new Exception("Configuration connection string not found.");
 
 string? connectionString = configuration.GetConnectionString("SQLite");
 
