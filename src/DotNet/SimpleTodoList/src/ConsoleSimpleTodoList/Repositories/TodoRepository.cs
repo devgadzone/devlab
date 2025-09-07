@@ -3,15 +3,20 @@
 public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
 {
     private readonly ISqlDataAccess _sqlDb;
+    private readonly ILogger _logger;
 
-    public TodoRepository(ISqlDataAccess sqlDb)
+    public TodoRepository(ISqlDataAccess sqlDb, ILogger<TodoRepository<T, TKey>> logger)
     {
+        _logger = logger;
         _sqlDb = sqlDb;
     }
 
-    public Task<IEnumerable<T>> GetAllAsync()
+    public async Task<IEnumerable<T>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        //TODO: QUERY FOR SQLITE AND POSTGRESQL
+        var sql = "SELECT Id, Description, IsDone, CreatedAt, UpdatedAt FROM main.Todos;";
+
+        return await _sqlDb.LoadDataAsync<T, dynamic>(sql, new { }, CommandType.Text);
     }
 
     public Task<T?> GetByIdAsync(TKey id)
