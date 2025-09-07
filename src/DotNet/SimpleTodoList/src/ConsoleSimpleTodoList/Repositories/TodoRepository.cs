@@ -19,17 +19,17 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
         throw new NotImplementedException();
     }
 
-    public Task<int> AddAsync(T model)
+    public Task<TKey> AddAsync(T model)
     {
         throw new NotImplementedException();
     }
 
-    public Task<int> UpdateAsync(T model)
+    public Task<TKey> UpdateAsync(T model)
     {
         throw new NotImplementedException();
     }
 
-    public Task<int> DeleteAsync(int id)
+    public Task<TKey> DeleteAsync(TKey id)
     {
         throw new NotImplementedException();
     }
