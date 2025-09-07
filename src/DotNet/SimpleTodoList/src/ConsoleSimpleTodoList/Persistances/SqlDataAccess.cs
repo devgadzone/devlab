@@ -5,7 +5,7 @@ public class SqlDataAccess : ISqlDataAccess
     private readonly IConfiguration _configuration;
     private ILogger _logger;
 
-    public SqlDataAccess(IConfiguration configuration, ILogger logger)
+    public SqlDataAccess(IConfiguration configuration, ILogger<SqlDataAccess> logger)
     {
         _logger = logger;
         _configuration = configuration;
@@ -31,6 +31,6 @@ public class SqlDataAccess : ISqlDataAccess
     private IDbConnection GetConnection()
     {
         //TODO: Get Database Engine from Configuration
-        return new SqliteConnection("SQLite");
+        return new SqliteConnection(_configuration.GetConnectionString("SQLite"));
     }
 }
