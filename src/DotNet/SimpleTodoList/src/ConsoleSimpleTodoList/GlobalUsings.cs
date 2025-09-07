@@ -1,5 +1,10 @@
-﻿global using System.Data;
+﻿global using static System.Console;
+global using System.Data;
 global using Microsoft.Data.Sqlite;
 global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.DependencyInjection;
 global using Dapper;
 global using ConsoleSimpleTodoList.Models;
+global using ConsoleSimpleTodoList.Persistances;
+
