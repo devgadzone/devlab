@@ -1,5 +1,6 @@
 ﻿namespace ConsoleSimpleTodoList.Repositories;
 
+//TODO: QUERY FOR SQLITE AND POSTGRESQL
 public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
 {
     private readonly ISqlDataAccess _sqlDb;
@@ -13,7 +14,6 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        //TODO: QUERY FOR SQLITE AND POSTGRESQL
         var sql = "SELECT Id, Description, IsDone, CreatedAt, UpdatedAt FROM main.Todos;";
 
         return await _sqlDb.LoadDataAsync<T, dynamic>(sql, new { }, CommandType.Text);
