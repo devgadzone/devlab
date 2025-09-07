@@ -108,7 +108,7 @@ async Task Read()
         foreach (var todo in todos)
         {
             WriteLine($"""
-                       {todo.Id} - {todo.Description}
+                       Id: {todo.Id} - {todo.Description}
                             Created at: {todo.CreatedAt.ToShortDateString()}
                             Is done: {todo.IsDone}
                             Updated at: {(todo.UpdatedAt == null ? "Not updated yet." : todo.UpdatedAt?.ToShortDateString() )}
