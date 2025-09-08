@@ -24,17 +24,22 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
         using (var cnx = GetConnection())
         {
             //TODO: Exectute in Transaction
-            TKey key = (TKey) Convert.ChangeType(
+            TKey key = (TKey)Convert.ChangeType(
                 await cnx.ExecuteAsync(command, parameters, commandType: commandType),
                 typeof(TKey));
-            
+
             return key;
         }
     }
 
     private IDbConnection GetConnection()
     {
-        //TODO: Get Database Engine from Configuration
-        return new SqliteConnection(_configuration.GetConnectionString("SQLite"));
+        //TODO: Validation
+        var dbEngineName = _configuration.GetValue<string>("DbEngineName");
+
+        if (dbEngineName is null)
+            throw new Exception("DbEngineName is empty.");
+
+        return new SqliteConnection(_configuration.GetConnectionString(dbEngineName));
     }
 }
