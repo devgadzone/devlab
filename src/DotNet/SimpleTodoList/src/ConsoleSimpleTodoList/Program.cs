@@ -97,7 +97,7 @@ async Task Create()
             CreatedAt = DateTime.Now
         };
 
-        var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+        var todoService = serviceProvider.GetService<ITodoService<Todo, int>>();
 
         if (todoService is not null)
         {
@@ -114,7 +114,7 @@ async Task Read()
     Clear();
     WriteLine("Read all todos\n");
 
-    var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+    var todoService = serviceProvider.GetService<ITodoService<Todo, int>>();
 
     if (todoService == null)
     {
@@ -171,7 +171,7 @@ async Task Update()
                     UpdatedAt = DateTime.Now
                 };
 
-                var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+                var todoService = serviceProvider.GetService<ITodoService<Todo, int>>();
 
                 if (todoService is not null)
                 {
@@ -204,7 +204,7 @@ async Task Delete()
         }
         else
         {
-            var todoService = serviceProvider.GetService<ITodoRepository<Todo, int>>();
+            var todoService = serviceProvider.GetService<ITodoService<Todo, int>>();
 
             if (todoService is not null)
             {
