@@ -11,28 +11,28 @@ public class TodoService<T, TKey> : ITodoService<T, TKey>
         _logger = logger;
     }
 
-    public Task<IEnumerable<T>> GetAllAsync()
+    public async Task<IEnumerable<T>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _repository.GetAllAsync();
     }
 
-    public Task<T?> GetByIdAsync(TKey id)
+    public async Task<T?> GetByIdAsync(TKey id)
     {
-        throw new NotImplementedException();
+        return await _repository.GetByIdAsync(id);
     }
 
-    public Task<TKey> AddAsync(T model)
+    public async Task<TKey> AddAsync(T model)
     {
-        throw new NotImplementedException();
+        return await _repository.AddAsync(model);
     }
 
-    public Task<TKey> UpdateAsync(T model)
+    public async Task<TKey> UpdateAsync(T model)
     {
-        throw new NotImplementedException();
+        return await _repository.UpdateAsync(model);
     }
 
-    public Task<TKey> DeleteAsync(TKey id)
+    public async Task<TKey> DeleteAsync(TKey id)
     {
-        throw new NotImplementedException();
+        return await _repository.DeleteAsync(id);
     }
 }
