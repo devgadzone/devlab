@@ -30,4 +30,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SimpleTodoList.Library\SimpleTodoList.Library.csproj" />
+    </ItemGroup>
+
 </Project>
