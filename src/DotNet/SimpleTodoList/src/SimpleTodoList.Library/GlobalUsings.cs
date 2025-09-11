@@ -1,1 +1,7 @@
-﻿
+﻿global using System.Data;
+global using Microsoft.Data.Sqlite;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Configuration;
+global using Dapper;
+global using SimpleTodoList.Library.Repositories;
+global using SimpleTodoList.Library.Persistances;
