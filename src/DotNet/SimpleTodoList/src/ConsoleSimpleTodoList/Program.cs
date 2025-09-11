@@ -3,7 +3,6 @@
  * TODO: REFACTOWANIE
  */
 
-
 var builder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -18,7 +17,7 @@ var serviceProvider = scope.ServiceProvider;
 
 WriteLine("Hello!\n");
 
-//await InitialDB();
+await InitialDB();
 await Initial();
 
 async Task Initial()
@@ -216,27 +215,14 @@ async Task Delete()
     } while (isIdValid == false);
 }
 
-/* TODO: Rfactore
 async Task InitialDB()
 {
-    var sql = """
-              CREATE TABLE IF NOT EXISTS main.Todos (
-                  Id INTEGER NOT NULL,
-                  Description TEXT NOT NULL,    
-                  IsDone INTEGER NOT NULL DEFAULT 0,
-                  CreatedAt TEXT NOT NULL DEFAULT (datetime('now')),
-                  UpdatedAt TEXT,
-                  
-                  PRIMARY KEY (Id AUTOINCREMENT)
-              );
-              """;
-
-    using (var cnx = new SqliteConnection(configuration.GetConnectionString("SQLite")))
-    {
-        await cnx.ExecuteAsync(sql);
-    }
+    var dbInitialize = serviceProvider.GetService<ISqlInitialDb<int>>();
+    if (dbInitialize is not null)
+        await dbInitialize.InitializeAsync();
+    else
+        throw new Exception("No valid ISqlInitialDb.");
 }
-*/
 
 IHostBuilder CreateHostBuilder(string[] args)
 {
@@ -254,5 +240,6 @@ IHostBuilder CreateHostBuilder(string[] args)
             services.AddSingleton<ISqlDataAccess<int>, SqlDataAccess<int>>();
             services.AddSingleton<ITodoRepository<Todo, int>, TodoRepository<Todo, int>>();
             services.AddSingleton<ITodoService<Todo, int>, TodoService<Todo, int>>();
+            services.AddSingleton<ISqlInitialDb<int>, SqlInitialDb<int>>();
         });
 }
