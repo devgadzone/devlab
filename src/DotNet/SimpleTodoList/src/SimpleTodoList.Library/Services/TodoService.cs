@@ -1,6 +1,4 @@
-﻿using SimpleTodoList.Library.Repositories;
-
-namespace SimpleTodoList.Library.Services;
+﻿namespace SimpleTodoList.Library.Services;
 
 public class TodoService<T, TKey> : ITodoService<T, TKey>
 {
