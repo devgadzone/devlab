@@ -1,4 +1,4 @@
-﻿namespace ConsoleSimpleTodoList.Models;
+﻿namespace SimpleTodoList.Library.Models;
 
 public class Todo
 {
