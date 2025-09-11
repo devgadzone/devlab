@@ -1,4 +1,4 @@
-﻿namespace ConsoleSimpleTodoList.Services;
+﻿namespace SimpleTodoList.Library.Services;
 
 public interface ITodoService<T, TKey>
 {

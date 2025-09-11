@@ -1,4 +1,6 @@
-﻿namespace ConsoleSimpleTodoList.Services;
+﻿using SimpleTodoList.Library.Repositories;
+
+namespace SimpleTodoList.Library.Services;
 
 public class TodoService<T, TKey> : ITodoService<T, TKey>
 {
