@@ -1,11 +1,9 @@
 ﻿global using static System.Console;
-global using System.Data;
-global using Microsoft.Data.Sqlite;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
-global using Dapper;
-global using ConsoleSimpleTodoList.Models;
-global using ConsoleSimpleTodoList.Persistances;
-global using ConsoleSimpleTodoList.Repositories;
+global using SimpleTodoList.Library.Models;
+global using SimpleTodoList.Library.Persistances;
+global using SimpleTodoList.Library.Repositories;
+global using SimpleTodoList.Library.Services;
