@@ -1,4 +1,4 @@
-﻿namespace ConsoleSimpleTodoList.Repositories;
+﻿namespace SimpleTodoList.Library.Repositories;
 
 public interface ITodoRepository<T, TKey>
 {

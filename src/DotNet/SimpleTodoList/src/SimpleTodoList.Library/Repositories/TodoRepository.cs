@@ -1,4 +1,4 @@
-﻿namespace ConsoleSimpleTodoList.Repositories;
+﻿namespace SimpleTodoList.Library.Repositories;
 
 //TODO: QUERY FOR SQLITE AND POSTGRESQL
 public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
