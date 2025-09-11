@@ -3,7 +3,6 @@
  * TODO: REFACTOWANIE
  */
 
-using ConsoleSimpleTodoList.Services;
 
 var builder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -19,7 +18,7 @@ var serviceProvider = scope.ServiceProvider;
 
 WriteLine("Hello!\n");
 
-await InitialDB();
+//await InitialDB();
 await Initial();
 
 async Task Initial()
@@ -217,6 +216,7 @@ async Task Delete()
     } while (isIdValid == false);
 }
 
+/* TODO: Rfactore
 async Task InitialDB()
 {
     var sql = """
@@ -236,6 +236,7 @@ async Task InitialDB()
         await cnx.ExecuteAsync(sql);
     }
 }
+*/
 
 IHostBuilder CreateHostBuilder(string[] args)
 {
