@@ -36,11 +36,17 @@ public class SQLiteInitialDb<TKey> : ISqlInitialDb<TKey>
 
     private async Task CreateIndexesAsync()
     {
-        var sqlCreateIndexTodo = """
-                                 CREATE INDEX IF NOT EXISTS idxTodoDescription
-                                 ON Todos (Description);
-                                 """;
+        var sqlCreateIndexTodoDescription = """
+                                            CREATE INDEX IF NOT EXISTS idxTodoDescription
+                                            ON Todos (Description);
+                                            """;
 
-        await _sqlDb.SaveDataAsync(sqlCreateIndexTodo, new { }, CommandType.Text);
+        var sqlCreateIndexTodoUpdatedAt = """
+                                          CREATE INDEX IF NOT EXISTS idxTodoUpdatedAd
+                                          ON Todos (UpdatedAt);
+                                          """;
+
+        await _sqlDb.SaveDataAsync(sqlCreateIndexTodoDescription, new { }, CommandType.Text);
+        await _sqlDb.SaveDataAsync(sqlCreateIndexTodoUpdatedAt, new { }, CommandType.Text);
     }
 }
