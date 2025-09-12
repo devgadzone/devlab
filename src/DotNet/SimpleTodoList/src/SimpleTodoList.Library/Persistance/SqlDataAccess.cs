@@ -57,7 +57,7 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
 
     private IDbConnection GetConnection()
     {
-        //TODO: Validation
+        //TODO: Validation DbEngine name
         var dbEngineName = _configuration.GetValue<string>("DbEngineName");
 
         if (dbEngineName is null)
