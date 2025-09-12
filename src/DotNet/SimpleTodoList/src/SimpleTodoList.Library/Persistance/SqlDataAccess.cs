@@ -1,6 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-
-namespace SimpleTodoList.Library.Persistance;
+﻿namespace SimpleTodoList.Library.Persistance;
 
 public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
 {
