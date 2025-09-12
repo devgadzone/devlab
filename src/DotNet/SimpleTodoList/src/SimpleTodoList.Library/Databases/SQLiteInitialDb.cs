@@ -14,22 +14,33 @@ public class SQLiteInitialDb<TKey> : ISqlInitialDb<TKey>
     public async Task InitializeAsync()
     {
         await CreateTablesAsync();
+        await CreateIndexesAsync();
     }
 
-    private async Task<TKey> CreateTablesAsync()
+    private async Task CreateTablesAsync()
     {
         var sqlCreateTableTodos = """
-                             CREATE TABLE IF NOT EXISTS main.Todos (
-                                 Id INTEGER NOT NULL,
-                                 Description TEXT NOT NULL,    
-                                 IsDone INTEGER NOT NULL DEFAULT 0,
-                                 CreatedAt TEXT NOT NULL DEFAULT (datetime('now')),
-                                 UpdatedAt TEXT,
-                                 
-                                 PRIMARY KEY (Id AUTOINCREMENT)
-                             );
-                             """;
+                                  CREATE TABLE IF NOT EXISTS main.Todos (
+                                      Id INTEGER NOT NULL,
+                                      Description TEXT NOT NULL,    
+                                      IsDone INTEGER NOT NULL DEFAULT 0,
+                                      CreatedAt TEXT NOT NULL DEFAULT (datetime('now')),
+                                      UpdatedAt TEXT,
+                                      
+                                      PRIMARY KEY (Id AUTOINCREMENT)
+                                  );
+                                  """;
 
-        return await _sqlDb.SaveDataAsync(sqlCreateTableTodos, new { }, CommandType.Text);
+        await _sqlDb.SaveDataAsync(sqlCreateTableTodos, new { }, CommandType.Text);
+    }
+
+    private async Task CreateIndexesAsync()
+    {
+        var sqlCreateIndexTodo = """
+                                 CREATE INDEX IF NOT EXISTS idxTodoDescription
+                                 ON Todos (Description);
+                                 """;
+
+        await _sqlDb.SaveDataAsync(sqlCreateIndexTodo, new { }, CommandType.Text);
     }
 }
