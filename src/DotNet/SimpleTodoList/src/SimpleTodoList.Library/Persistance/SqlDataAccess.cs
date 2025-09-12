@@ -63,9 +63,10 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
         if (dbEngineName is null)
             throw new Exception("DbEngineName is empty.");
 
-        //TODO return connection based on dbEngineName
         if (Enum.TryParse<DataBaseEngine>(dbEngineName, ignoreCase: false, out var dbEngine))
         {
+            //TODO: Validation connection string
+
             return dbEngine switch
             {
                 DataBaseEngine.SQLite => new SqliteConnection(_configuration.GetConnectionString(dbEngineName)),
