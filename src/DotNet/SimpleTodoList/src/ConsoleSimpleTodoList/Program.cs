@@ -240,6 +240,6 @@ IHostBuilder CreateHostBuilder(string[] args)
             services.AddSingleton<ISqlDataAccess<int>, SqlDataAccess<int>>();
             services.AddSingleton<ITodoRepository<Todo, int>, TodoRepository<Todo, int>>();
             services.AddSingleton<ITodoService<Todo, int>, TodoService<Todo, int>>();
-            services.AddSingleton<ISqlInitialDb<int>, SqlInitialDb<int>>();
+            services.AddSingleton<ISqlInitialDb<int>, SQLiteInitialDb<int>>();
         });
 }
