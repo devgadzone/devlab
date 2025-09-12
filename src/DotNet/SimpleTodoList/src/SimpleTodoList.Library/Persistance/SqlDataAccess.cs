@@ -1,4 +1,6 @@
-﻿namespace SimpleTodoList.Library.Persistance;
+﻿using Microsoft.Data.SqlClient;
+
+namespace SimpleTodoList.Library.Persistance;
 
 public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
 {
@@ -70,7 +72,7 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
             {
                 DataBaseEngine.SQLite => new SqliteConnection(_configuration.GetConnectionString(dbEngineName)),
                 DataBaseEngine.PostgreSQL => new NpgsqlConnection(_configuration.GetConnectionString(dbEngineName)),
-                DataBaseEngine.SQLServer => throw new NotImplementedException("SQLServer not implemented yet."),
+                DataBaseEngine.SQLServer => new SqlConnection(_configuration.GetConnectionString(dbEngineName)),
                 _ => throw new Exception("DbEngine not supported yet.")
             };
         }
