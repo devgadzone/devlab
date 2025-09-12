@@ -42,7 +42,7 @@ public class SQLiteInitialDb<TKey> : ISqlInitialDb<TKey>
                                             """;
 
         var sqlCreateIndexTodoUpdatedAt = """
-                                          CREATE INDEX IF NOT EXISTS idxTodoUpdatedAd
+                                          CREATE INDEX IF NOT EXISTS idxTodoUpdatedAt
                                           ON Todos (UpdatedAt);
                                           """;
 
