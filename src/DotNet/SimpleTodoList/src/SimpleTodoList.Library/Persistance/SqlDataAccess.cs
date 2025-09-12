@@ -69,7 +69,7 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
             return dbEngine switch
             {
                 DataBaseEngine.SQLite => new SqliteConnection(_configuration.GetConnectionString(dbEngineName)),
-                DataBaseEngine.PostgreSQL => throw new NotImplementedException("PostgreSQL not implemented yet."),
+                DataBaseEngine.PostgreSQL => new NpgsqlConnection(_configuration.GetConnectionString(dbEngineName)),
                 DataBaseEngine.SQLServer => throw new NotImplementedException("SQLServer not implemented yet."),
                 _ => throw new Exception("DbEngine not supported yet.")
             };
