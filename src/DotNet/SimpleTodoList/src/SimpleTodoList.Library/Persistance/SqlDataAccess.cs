@@ -66,22 +66,16 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
         //TODO return connection based on dbEngineName
         if (Enum.TryParse<DataBaseEngine>(dbEngineName, ignoreCase: false, out var dbEngine))
         {
-            if (dbEngine == DataBaseEngine.SQLite)
-                return new SqliteConnection(_configuration.GetConnectionString(dbEngineName));
-
-            if (dbEngine == DataBaseEngine.PostgreSQL)
-                throw new NotImplementedException("PostgreSQL not implemented yet.");
-
-            if (dbEngine == DataBaseEngine.SQLServer)
-                throw new NotImplementedException("SQLServer not implemented yet.");
-
-            if (dbEngine == DataBaseEngine.MongoDB)
-                throw new NotImplementedException("MongoDB not implemented yet.");
-
-            if (dbEngine == DataBaseEngine.RavenDB)
-                throw new NotImplementedException("RavenDB not implemented yet.");
+            return dbEngine switch
+            {
+                DataBaseEngine.SQLite => new SqliteConnection(_configuration.GetConnectionString(dbEngineName)),
+                DataBaseEngine.PostgreSQL => throw new NotImplementedException("PostgreSQL not implemented yet."),
+                DataBaseEngine.SQLServer => throw new NotImplementedException("SQLServer not implemented yet."),
+                _ => throw new Exception("DbEngine not supported yet.")
+            };
         }
 
-        throw new Exception("DbEngineName is not supported.");
+        
+        throw new Exception("Invalid DbEngineName.");
     }
 }
