@@ -24,11 +24,31 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
         using (var cnx = GetConnection())
         {
             //TODO: Exectute in Transaction
-            TKey key = (TKey)Convert.ChangeType(
-                await cnx.ExecuteAsync(command, parameters, commandType: commandType),
-                typeof(TKey));
+            cnx.Open();
 
-            return key;
+            using (var tran = cnx.BeginTransaction())
+            {
+                try
+                {
+                    TKey key = (TKey)Convert.ChangeType(
+                        await cnx.ExecuteAsync(command, parameters, commandType: commandType),
+                        typeof(TKey));
+
+                    tran.Commit();
+
+                    return key;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, ex.Message);
+                    tran.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    cnx.Close();
+                }
+            }
         }
     }
 
