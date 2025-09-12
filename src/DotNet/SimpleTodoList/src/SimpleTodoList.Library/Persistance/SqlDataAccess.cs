@@ -75,7 +75,6 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
             };
         }
 
-        
         throw new Exception("Invalid DbEngineName.");
     }
 }
