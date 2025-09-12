@@ -3,7 +3,7 @@
 public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
 {
     private readonly IConfiguration _configuration;
-    private ILogger _logger;
+    private readonly ILogger<SqlDataAccess<TKey>> _logger;
 
     public SqlDataAccess(IConfiguration configuration, ILogger<SqlDataAccess<TKey>> logger)
     {
