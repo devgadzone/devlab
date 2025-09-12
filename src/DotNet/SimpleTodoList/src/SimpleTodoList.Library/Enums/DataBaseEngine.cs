@@ -2,4 +2,9 @@
 
 public enum DataBaseEngine
 {
+    SQLite,
+    PostgreSQL,
+    SQLServer,
+    MongoDB,
+    RavenDB
 }
