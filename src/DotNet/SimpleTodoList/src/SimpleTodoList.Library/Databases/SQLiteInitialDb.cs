@@ -23,7 +23,7 @@ public class SQLiteInitialDb<TKey> : ISqlInitialDb<TKey>
                                   CREATE TABLE IF NOT EXISTS main.Todos (
                                       Id INTEGER PRIMARY KEY AUTOINCREMENT,
                                       Description TEXT NOT NULL,    
-                                      IsDone INTEGER NOT NULL DEFAULT 0,
+                                      IsDone INTEGER NOT NULL DEFAULT 0 CHECK(IsDone IN (0,1)),
                                       CreatedAt TEXT NOT NULL DEFAULT (datetime('now')),
                                       UpdatedAt TEX
                                   );
