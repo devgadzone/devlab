@@ -19,9 +19,17 @@ public class TodoRepository<T, TKey> : ITodoRepository<T, TKey>
         return await _sqlDb.LoadDataAsync<T, dynamic>(sql, new { }, CommandType.Text);
     }
 
-    public Task<T?> GetByIdAsync(TKey id)
+    public async Task<T?> GetByIdAsync(TKey id)
     {
-        throw new NotImplementedException();
+        var sql = """
+                  SELECT Id, Description, IsDone, CreatedAt, UpdatedAt 
+                  FROM main.Todos
+                  WHERE Id = @Id;
+                  """;
+
+        var result = await _sqlDb.LoadDataAsync<T, dynamic>(sql, new { Id = id }, CommandType.Text);
+
+        return result.FirstOrDefault();
     }
 
     public Task<TKey> AddAsync(T model)
