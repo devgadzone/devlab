@@ -1,11 +1,11 @@
 ﻿namespace SimpleTodoList.Library.Databases;
 
-public class SqlInitialDb<TKey> : ISqlInitialDb<TKey>
+public class SQLiteInitialDb<TKey> : ISqlInitialDb<TKey>
 {
     private readonly ISqlDataAccess<TKey> _sqlDb;
-    private readonly ILogger<SqlInitialDb<TKey>> _logger;
+    private readonly ILogger<SQLiteInitialDb<TKey>> _logger;
 
-    public SqlInitialDb(ISqlDataAccess<TKey> sqlDb, ILogger<SqlInitialDb<TKey>> logger)
+    public SQLiteInitialDb(ISqlDataAccess<TKey> sqlDb, ILogger<SQLiteInitialDb<TKey>> logger)
     {
         _sqlDb = sqlDb;
         _logger = logger;
