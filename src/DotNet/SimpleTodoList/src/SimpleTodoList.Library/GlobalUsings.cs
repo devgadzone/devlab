@@ -5,3 +5,4 @@ global using Microsoft.Extensions.Configuration;
 global using Dapper;
 global using SimpleTodoList.Library.Repositories;
 global using SimpleTodoList.Library.Persistances;
+global using SimpleTodoList.Library.Enums;
