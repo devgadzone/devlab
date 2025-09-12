@@ -46,7 +46,13 @@ public class SQLiteInitialDb<TKey> : ISqlInitialDb<TKey>
                                           ON Todos (UpdatedAt);
                                           """;
 
+        var sqlCreateIndexTodoIsDone = """
+                                       CREATE INDEX IF NOT EXISTS idxTodoIsDone
+                                       ON Todos (IsDone);
+                                       """;
+
         await _sqlDb.SaveDataAsync(sqlCreateIndexTodoDescription, new { }, CommandType.Text);
         await _sqlDb.SaveDataAsync(sqlCreateIndexTodoUpdatedAt, new { }, CommandType.Text);
+        await _sqlDb.SaveDataAsync(sqlCreateIndexTodoIsDone, new { }, CommandType.Text);
     }
 }
