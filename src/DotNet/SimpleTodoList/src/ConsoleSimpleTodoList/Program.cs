@@ -83,7 +83,7 @@ async Task<bool> UserChoice(string userInput)
 async Task Create()
 {
     //TODO: VALIDATION
-    WriteLine("\nEnter the TODO unique description:");
+    WriteLine("\nEnter the TODO description:");
     Write("\n> ");
     string? userInput = ReadLine();
 
