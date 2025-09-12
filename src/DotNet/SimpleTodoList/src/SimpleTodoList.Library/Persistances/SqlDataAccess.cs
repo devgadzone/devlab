@@ -41,8 +41,11 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
             throw new Exception("DbEngineName is empty.");
 
         //TODO return connection based on dbEngineName
-        if (dbEngineName.Equals("SQLite"))
-            return new SqliteConnection(_configuration.GetConnectionString(dbEngineName));
+        if (Enum.TryParse<DataBaseEngine>(dbEngineName, ignoreCase: false, out var dbEngine))
+        {
+            if (dbEngine == DataBaseEngine.SQLite)
+                return new SqliteConnection(_configuration.GetConnectionString(dbEngineName));
+        }
 
         throw new Exception("DbEngineName is not supported.");
     }
