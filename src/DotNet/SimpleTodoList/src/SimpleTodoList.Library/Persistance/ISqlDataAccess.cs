@@ -1,4 +1,4 @@
-﻿namespace SimpleTodoList.Library.Persistances;
+﻿namespace SimpleTodoList.Library.Persistance;
 
 public interface ISqlDataAccess<TKey>
 {

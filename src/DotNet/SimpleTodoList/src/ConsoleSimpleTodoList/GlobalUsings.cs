@@ -4,7 +4,7 @@ global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using SimpleTodoList.Library.Models;
-global using SimpleTodoList.Library.Persistances;
 global using SimpleTodoList.Library.Repositories;
 global using SimpleTodoList.Library.Services;
 global using SimpleTodoList.Library.Databases;
+global using SimpleTodoList.Library.Persistance;
