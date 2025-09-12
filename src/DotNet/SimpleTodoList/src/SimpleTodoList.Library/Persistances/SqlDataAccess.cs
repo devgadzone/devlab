@@ -30,7 +30,11 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
                 try
                 {
                     TKey key = (TKey)Convert.ChangeType(
-                        await cnx.ExecuteAsync(command, parameters, commandType: commandType),
+                        await cnx.ExecuteAsync(
+                            command,
+                            parameters,
+                            transaction: tran,
+                            commandType: commandType),
                         typeof(TKey));
 
                     tran.Commit();
