@@ -45,6 +45,18 @@ public class SqlDataAccess<TKey> : ISqlDataAccess<TKey>
         {
             if (dbEngine == DataBaseEngine.SQLite)
                 return new SqliteConnection(_configuration.GetConnectionString(dbEngineName));
+
+            if (dbEngine == DataBaseEngine.PostgreSQL)
+                throw new NotImplementedException("PostgreSQL not implemented yet.");
+
+            if (dbEngine == DataBaseEngine.SQLServer)
+                throw new NotImplementedException("SQLServer not implemented yet.");
+
+            if (dbEngine == DataBaseEngine.MongoDB)
+                throw new NotImplementedException("MongoDB not implemented yet.");
+
+            if (dbEngine == DataBaseEngine.RavenDB)
+                throw new NotImplementedException("RavenDB not implemented yet.");
         }
 
         throw new Exception("DbEngineName is not supported.");
