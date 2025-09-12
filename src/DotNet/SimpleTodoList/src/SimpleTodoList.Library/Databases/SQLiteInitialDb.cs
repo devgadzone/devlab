@@ -21,13 +21,13 @@ public class SQLiteInitialDb<TKey> : ISqlInitialDb<TKey>
     {
         var sqlCreateTableTodos = """
                                   CREATE TABLE IF NOT EXISTS main.Todos (
-                                      Id INTEGER NOT NULL,
+                                      Id INTEGER AUTOINCREMENT,
                                       Description TEXT NOT NULL,    
                                       IsDone INTEGER NOT NULL DEFAULT 0,
                                       CreatedAt TEXT NOT NULL DEFAULT (datetime('now')),
                                       UpdatedAt TEXT,
                                       
-                                      PRIMARY KEY (Id AUTOINCREMENT)
+                                      PRIMARY KEY (Id)
                                   );
                                   """;
 
